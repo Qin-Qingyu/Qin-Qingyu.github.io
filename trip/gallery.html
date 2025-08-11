@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Tales</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+    <style>
+        .gallery-section {
+            padding: 80px 0;
+        }
+        
+        .filter-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .filter-button {
+            background-color: #f1f1f1;
+            color: #333;
+            border: none;
+            padding: 8px 15px;
+            margin: 0 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .filter-button:hover,
+        .filter-button.active {
+            background-color: #0275d8;
+            color: white;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            aspect-ratio: 1/1;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px 15px 15px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+        }
+        
+        .gallery-caption h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .gallery-caption p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 30px;
+        }
+        
+        .lightbox.active {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 80vh;
+        }
+        
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+        
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            max-width: 800px;
+        }
+        
+        .lightbox-caption h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .lightbox-caption p {
+            font-size: 1rem;
+            color: #ccc;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .lightbox-nav button {
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-nav button:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            color: white;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">Adventure Tales</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="destinations.html">Destinations</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="statistics.html">Statistics</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="container">
+            <h2>Travel Photography Gallery</h2>
+            <p>A collection of unforgettable moments captured during my adventures around the world</p>
+        </div>
+    </section>
+    <section class="gallery-section">
+        <div class="container">
+            <div class="filter-container">
+                <button class="filter-button active" data-filter="all">All Photos</button>
+                <button class="filter-button" data-filter="landscapes">Landscapes</button>
+                <button class="filter-button" data-filter="cities">Cities</button>
+                <button class="filter-button" data-filter="people">People</button>
+                <button class="filter-button" data-filter="food">Food</button>
+                <button class="filter-button" data-filter="wildlife">Wildlife</button>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item" data-category="landscapes" data-id="1">
+                    <img src="images/gallery1.jpg" alt="Mountain landscape">
+                    <div class="gallery-caption">
+                        <h3>Majestic Mountains</h3>
+                        <p>Japanese Alps in Nagano Prefecture, Japan</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="cities" data-id="2">
+                    <img src="images/gallery2.jpg" alt="Tokyo skyline">
+                    <div class="gallery-caption">
+                        <h3>Tokyo Skyline</h3>
+                        <p>View from Tokyo Skytree at sunset</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="food" data-id="3">
+                    <img src="images/gallery3.jpg" alt="Japanese sushi">
+                    <div class="gallery-caption">
+                        <h3>Authentic Sushi</h3>
+                        <p>Fresh sushi from Tsukiji Fish Market, Tokyo</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="landscapes" data-id="4">
+                    <img src="images/gallery4.jpg" alt="Italian countryside">
+                    <div class="gallery-caption">
+                        <h3>Tuscan Vineyards</h3>
+                        <p>Rolling hills of Tuscany, Italy</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="cities" data-id="5">
+                    <img src="images/gallery5.jpg" alt="Roman Colosseum">
+                    <div class="gallery-caption">
+                        <h3>Ancient Colosseum</h3>
+                        <p>The iconic amphitheater in Rome, Italy</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="food" data-id="6">
+                    <img src="images/gallery6.jpg" alt="Italian pasta">
+                    <div class="gallery-caption">
+                        <h3>Handmade Pasta</h3>
+                        <p>Traditional pasta from a family restaurant in Rome</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="landscapes" data-id="7">
+                    <img src="images/gallery7.jpg" alt="Sydney Harbor">
+                    <div class="gallery-caption">
+                        <h3>Sydney Harbor</h3>
+                        <p>Opera House and Harbour Bridge at dusk</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="wildlife" data-id="8">
+                    <img src="images/gallery8.png" alt="Kangaroo">
+                    <div class="gallery-caption">
+                        <h3>Australian Wildlife</h3>
+                        <p>Wild kangaroo spotted near Sydney</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="people" data-id="9">
+                    <img src="images/gallery9.png" alt="Street performer">
+                    <div class="gallery-caption">
+                        <h3>Street Performer</h3>
+                        <p>Talented musician in Paris, France</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="cities" data-id="10">
+                    <img src="images/gallery10.png" alt="Paris streets">
+                    <div class="gallery-caption">
+                        <h3>Parisian Charm</h3>
+                        <p>Quaint street in Montmartre, Paris</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="food" data-id="11">
+                    <img src="images/gallery11.png" alt="French pastries">
+                    <div class="gallery-caption">
+                        <h3>French Patisserie</h3>
+                        <p>Delicious pastries from a bakery in Paris</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="cities" data-id="12">
+                    <img src="images/gallery12.png" alt="New York skyline">
+                    <div class="gallery-caption">
+                        <h3>Manhattan Skyline</h3>
+                        <p>View from Brooklyn Bridge, New York City</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="people" data-id="13">
+                    <img src="images/gallery13.png" alt="Street vendor">
+                    <div class="gallery-caption">
+                        <h3>Street Vendor</h3>
+                        <p>Local selling spices in Bangkok market</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="food" data-id="14">
+                    <img src="images/gallery14.png" alt="Thai street food">
+                    <div class="gallery-caption">
+                        <h3>Thai Street Food</h3>
+                        <p>Delicious pad thai from a street vendor in Bangkok</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="landscapes" data-id="15">
+                    <img src="images/gallery15.png" alt="Thai beach">
+                    <div class="gallery-caption">
+                        <h3>Tropical Paradise</h3>
+                        <p>Pristine beach in Krabi, Thailand</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="lightbox">
+        <button class="lightbox-close">&times;</button>
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-image">
+            <div class="lightbox-nav">
+                <button class="prev-btn">&lt;</button>
+                <button class="next-btn">&gt;</button>
+            </div>
+        </div>
+        <div class="lightbox-caption">
+            <h3></h3>
+            <p></p>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>Adventure Tales</h3>
+                    <p>A personal travel blog sharing experiences from around the world.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="statistics.html">Statistics</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Me</h3>
+                    <ul class="social-icons">
+                        <li><a href="#"><img src="images/fackbook.png" alt="Facebook"></a></li>
+                        <li><a href="#"><img src="images/instagram.png" alt="Instagram"></a></li>
+                        <li><a href="#"><img src="images/twitter-circle-fill.png" alt="Twitter"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Adventure Tales. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gallery filtering
+            const filterButtons = document.querySelectorAll('.filter-button');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get the filter value
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Show/hide cards based on filter
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Lightbox functionality
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImage = document.querySelector('.lightbox-image');
+            const lightboxCaption = document.querySelector('.lightbox-caption');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            const prevBtn = document.querySelector('.lightbox-nav .prev-btn');
+            const nextBtn = document.querySelector('.lightbox-nav .next-btn');
+            
+            let currentImageIndex = 0;
+            const visibleItems = () => Array.from(galleryItems).filter(item => item.style.display !== 'none');
+            
+            // Open lightbox when clicking on a gallery item
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const img = this.querySelector('img');
+                    const caption = this.querySelector('.gallery-caption');
+                    const title = caption.querySelector('h3').textContent;
+                    const desc = caption.querySelector('p').textContent;
+                    
+                    lightboxImage.src = img.src;
+                    lightboxImage.alt = img.alt;
+                    lightboxCaption.querySelector('h3').textContent = title;
+                    lightboxCaption.querySelector('p').textContent = desc;
+                    
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                    
+                    // Set current image index
+                    const items = visibleItems();
+                    currentImageIndex = items.indexOf(this);
+                });
+            });
+            
+            // Close lightbox
+            lightboxClose.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = ''; // Allow scrolling again
+            });
+            
+            // Close lightbox when clicking outside the image
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Navigate to previous image
+            prevBtn.addEventListener('click', function() {
+                const items = visibleItems();
+                currentImageIndex--;
+                if (currentImageIndex < 0) {
+                    currentImageIndex = items.length - 1;
+                }
+                
+                const item = items[currentImageIndex];
+                const img = item.querySelector('img');
+                const caption = item.querySelector('.gallery-caption');
+                const title = caption.querySelector('h3').textContent;
+                const desc = caption.querySelector('p').textContent;
+                
+                lightboxImage.src = img.src;
+                lightboxImage.alt = img.alt;
+                lightboxCaption.querySelector('h3').textContent = title;
+                lightboxCaption.querySelector('p').textContent = desc;
+            });
+            
+            // Navigate to next image
+            nextBtn.addEventListener('click', function() {
+                const items = visibleItems();
+                currentImageIndex++;
+                if (currentImageIndex >= items.length) {
+                    currentImageIndex = 0;
+                }
+                
+                const item = items[currentImageIndex];
+                const img = item.querySelector('img');
+                const caption = item.querySelector('.gallery-caption');
+                const title = caption.querySelector('h3').textContent;
+                const desc = caption.querySelector('p').textContent;
+                
+                lightboxImage.src = img.src;
+                lightboxImage.alt = img.alt;
+                lightboxCaption.querySelector('h3').textContent = title;
+                lightboxCaption.querySelector('p').textContent = desc;
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (!lightbox.classList.contains('active')) return;
+                
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                } else if (e.key === 'ArrowLeft') {
+                    prevBtn.click();
+                } else if (e.key === 'ArrowRight') {
+                    nextBtn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Tales</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+    <script src="./js/chart.js" defer></script>
+    <style>
+        .destinations-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+        }
+        
+        .destinations-table th,
+        .destinations-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .destinations-table th {
+            background-color: #0275d8;
+            color: white;
+        }
+        
+        .destinations-table tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">Adventure Tales</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="destinations.html">Destinations</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="statistics.html" class="active">Statistics</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="container">
+            <h2>My Travel  Statistics</h2>
+            <p>Below shows all the amazing places I've visited in my travels. let's see details about each destination!</p>
+        </div>
+    </section>
+    <section class="map-section">
+        <div class="container">
+            <h3>My Travel Destinations</h3>
+            <table class="destinations-table">
+                <thead>
+                    <tr>
+                        <th>Destination</th>
+                        <th>Country</th>
+                        <th>Year Visited</th>
+                        <th>Highlight</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tokyo</td>
+                        <td>Japan</td>
+                        <td>2025</td>
+                        <td>Shibuya Crossing & Tokyo Tower</td>
+                        <td>⭐⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>Rome</td>
+                        <td>Italy</td>
+                        <td>2025</td>
+                        <td>Colosseum & Vatican City</td>
+                        <td>⭐⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>Sydney</td>
+                        <td>Australia</td>
+                        <td>2025</td>
+                        <td>Opera House & Bondi Beach</td>
+                        <td>⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>Paris</td>
+                        <td>France</td>
+                        <td>2024</td>
+                        <td>Eiffel Tower & Louvre Museum</td>
+                        <td>⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>New York City</td>
+                        <td>USA</td>
+                        <td>2024</td>
+                        <td>Times Square & Central Park</td>
+                        <td>⭐⭐⭐⭐</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="trip-stats">
+                <h3>Travel Statistics</h3>
+                <div id="stats-container">
+                    <canvas id="travel-chart" width="800" height="400"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>Adventure Tales</h3>
+                    <p>A personal travel blog sharing experiences from around the world.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="statistics.html">Statistics</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Me</h3>
+                    <ul class="social-icons">
+                        <li><a href="#"><img src="images/fackbook.png" alt="Facebook"></a></li>
+                        <li><a href="#"><img src="images/instagram.png" alt="Instagram"></a></li>
+                        <li><a href="#"><img src="images/twitter-circle-fill.png" alt="Twitter"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Adventure Tales. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('travel-chart').getContext('2d');
+            
+            const travelChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Asia', 'Europe', 'Oceania', 'North America', 'South America', 'Africa'],
+                    datasets: [{
+                        label: 'Countries Visited',
+                        data: [1, 2, 1, 1, 0, 0],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Countries Visited by Continent'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

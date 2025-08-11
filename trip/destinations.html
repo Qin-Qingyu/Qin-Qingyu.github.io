@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Tales</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+    <style>
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .destination-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            background-color: #fff;
+        }
+        
+        .destination-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .destination-image {
+            height: 250px;
+            position: relative;
+        }
+        
+        .destination-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .destination-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #0275d8;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .destination-content {
+            padding: 20px;
+        }
+        
+        .destination-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .destination-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .destination-meta span {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+        
+        .destination-meta span i {
+            margin-right: 5px;
+            color: #0275d8;
+        }
+        
+        .destination-content p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .read-more {
+            display: inline-block;
+            background-color: #0275d8;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .read-more:hover {
+            background-color: #025aa5;
+            color: white;
+        }
+        
+        .filter-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .filter-button {
+            background-color: #f1f1f1;
+            color: #333;
+            border: none;
+            padding: 8px 15px;
+            margin: 0 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .filter-button:hover,
+        .filter-button.active {
+            background-color: #0275d8;
+            color: white;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .tag {
+            background-color: #f1f1f1;
+            color: #555;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .destination-stats {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background-color: #f9f9f9;
+            border-top: 1px solid #eee;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0275d8;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        .travel-tips {
+            background-color: #f5f9ff;
+            padding: 60px 0;
+        }
+        
+        .tip-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .tip-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .tip-card h3 {
+            color: #0275d8;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8f0fe;
+        }
+        
+        .tip-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .tip-card ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .tip-card ul li:before {
+            content: "•";
+            color: #0275d8;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">Adventure Tales</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="destinations.html" class="active">Destinations</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="statistics.html">Statistics</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="container">
+            <h2>Explore My Travel Destinations</h2>
+            <p>Discover the amazing places I've visited, my experiences, and travel tips for your own adventures</p>
+        </div>
+    </section>
+    <section class="destinations-section">
+        <div class="container">
+            <div class="filter-container">
+                <button class="filter-button active" data-filter="all">All Destinations</button>
+                <button class="filter-button" data-filter="asia">Asia</button>
+                <button class="filter-button" data-filter="europe">Europe</button>
+                <button class="filter-button" data-filter="oceania">Oceania</button>
+                <button class="filter-button" data-filter="america">North America</button>
+            </div>
+            
+            <div class="destinations-grid">
+                <div class="destination-card" data-category="asia">
+                    <div class="destination-image">
+                        <img src="images/Japan2.jpg" alt="Tokyo, Japan">
+                        <div class="destination-badge">Asia</div>
+                    </div>
+                    <div class="destination-content">
+                        <h3>Tokyo, Japan</h3>
+                        <div class="destination-meta">
+                            <span><i class="far fa-calendar"></i> April 2025</span>
+                            <span><i class="far fa-clock"></i> 10 Days</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">City</span>
+                            <span class="tag">Culture</span>
+                            <span class="tag">Food</span>
+                        </div>
+                        <p>Exploring the vibrant streets of Tokyo, from the traditional temples to the futuristic Shibuya district. Enjoyed incredible sushi, visited iconic landmarks, and experienced the unique blend of ancient traditions and cutting-edge technology.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                    <div class="destination-stats">
+                        <div class="stat">
+                            <div class="stat-value">⭐⭐⭐⭐⭐</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">$$$$</div>
+                            <div class="stat-label">Cost</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Spring</div>
+                            <div class="stat-label">Season</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="destination-card" data-category="europe">
+                    <div class="destination-image">
+                        <img src="images/italy.jpg" alt="Rome, Italy">
+                        <div class="destination-badge">Europe</div>
+                    </div>
+                    <div class="destination-content">
+                        <h3>Rome, Italy</h3>
+                        <div class="destination-meta">
+                            <span><i class="far fa-calendar"></i> March 2025</span>
+                            <span><i class="far fa-clock"></i> 7 Days</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">History</span>
+                            <span class="tag">Architecture</span>
+                            <span class="tag">Food</span>
+                        </div>
+                        <p>Walking through the ancient streets of Rome, surrounded by thousands of years of history. From the Colosseum to the Vatican, every corner of the city tells a story. The pasta and gelato were absolutely incredible!</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                    <div class="destination-stats">
+                        <div class="stat">
+                            <div class="stat-value">⭐⭐⭐⭐⭐</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">$$$</div>
+                            <div class="stat-label">Cost</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Spring</div>
+                            <div class="stat-label">Season</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="destination-card" data-category="oceania">
+                    <div class="destination-image">
+                        <img src="images/australia.jpg" alt="Sydney, Australia">
+                        <div class="destination-badge">Oceania</div>
+                    </div>
+                    <div class="destination-content">
+                        <h3>Sydney, Australia</h3>
+                        <div class="destination-meta">
+                            <span><i class="far fa-calendar"></i> February 2025</span>
+                            <span><i class="far fa-clock"></i> 12 Days</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Beach</span>
+                            <span class="tag">Wildlife</span>
+                            <span class="tag">City</span>
+                        </div>
+                        <p>Experiencing the best of Australia in Sydney, from the iconic Opera House to the beautiful Bondi Beach. Encounters with unique wildlife and breath-taking coastal views made this trip unforgettable.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                    <div class="destination-stats">
+                        <div class="stat">
+                            <div class="stat-value">⭐⭐⭐⭐</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">$$$$</div>
+                            <div class="stat-label">Cost</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Summer</div>
+                            <div class="stat-label">Season</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="destination-card" data-category="europe">
+                    <div class="destination-image">
+                        <img src="images/france.jpg" alt="Paris, France">
+                        <div class="destination-badge">Europe</div>
+                    </div>
+                    <div class="destination-content">
+                        <h3>Paris, France</h3>
+                        <div class="destination-meta">
+                            <span><i class="far fa-calendar"></i> December 2024</span>
+                            <span><i class="far fa-clock"></i> 8 Days</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Romance</span>
+                            <span class="tag">Art</span>
+                            <span class="tag">Culture</span>
+                        </div>
+                        <p>Exploring the romantic streets of Paris, visiting world-class museums like the Louvre, and enjoying mouth-watering pastries. The view from the Eiffel Tower at night was absolutely magical.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                    <div class="destination-stats">
+                        <div class="stat">
+                            <div class="stat-value">⭐⭐⭐⭐</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">$$$$</div>
+                            <div class="stat-label">Cost</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Winter</div>
+                            <div class="stat-label">Season</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="destination-card" data-category="america">
+                    <div class="destination-image">
+                        <img src="images/usa.jpg" alt="New York City, USA">
+                        <div class="destination-badge">North America</div>
+                    </div>
+                    <div class="destination-content">
+                        <h3>New York City, USA</h3>
+                        <div class="destination-meta">
+                            <span><i class="far fa-calendar"></i> October 2024</span>
+                            <span><i class="far fa-clock"></i> 9 Days</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">City</span>
+                            <span class="tag">Shopping</span>
+                            <span class="tag">Food</span>
+                        </div>
+                        <p>The city that never sleeps lived up to its name! Exploring Manhattan, visiting iconic landmarks like Times Square and Central Park, and enjoying the diverse culinary scene made this trip incredible.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                    <div class="destination-stats">
+                        <div class="stat">
+                            <div class="stat-value">⭐⭐⭐⭐</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">$$$$</div>
+                            <div class="stat-label">Cost</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Fall</div>
+                            <div class="stat-label">Season</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="destination-card" data-category="asia">
+                    <div class="destination-image">
+                        <img src="images/thailand.jpg" alt="Bangkok, Thailand">
+                        <div class="destination-badge">Asia</div>
+                    </div>
+                    <div class="destination-content">
+                        <h3>Bangkok, Thailand</h3>
+                        <div class="destination-meta">
+                            <span><i class="far fa-calendar"></i> September 2024</span>
+                            <span><i class="far fa-clock"></i> 11 Days</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Culture</span>
+                            <span class="tag">Food</span>
+                            <span class="tag">Budget</span>
+                        </div>
+                        <p>An amazing journey through Thailand's capital, experiencing the vibrant street life, stunning temples, and unforgettable street food. The blend of tradition and modernity creates a unique atmosphere.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                    <div class="destination-stats">
+                        <div class="stat">
+                            <div class="stat-value">⭐⭐⭐⭐</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">$$</div>
+                            <div class="stat-label">Cost</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Fall</div>
+                            <div class="stat-label">Season</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="travel-tips">
+        <div class="container">
+            <h2 class="section-title">Travel Tips</h2>
+            <div class="tip-cards">
+                <div class="tip-card">
+                    <h3>Packing Essentials</h3>
+                    <ul>
+                        <li>Universal power adapter</li>
+                        <li>Compact first aid kit</li>
+                        <li>Reusable water bottle</li>
+                        <li>Comfortable walking shoes</li>
+                        <li>Digital copies of documents</li>
+                    </ul>
+                </div>
+                <div class="tip-card">
+                    <h3>Money Saving Tips</h3>
+                    <ul>
+                        <li>Book flights 2-3 months in advance</li>
+                        <li>Use public transportation</li>
+                        <li>Stay in accommodations with kitchen facilities</li>
+                        <li>Research free attractions and events</li>
+                        <li>Travel during shoulder seasons</li>
+                    </ul>
+                </div>
+                <div class="tip-card">
+                    <h3>Safety Tips</h3>
+                    <ul>
+                        <li>Purchase travel insurance</li>
+                        <li>Register with your embassy</li>
+                        <li>Research local customs and laws</li>
+                        <li>Keep emergency contacts handy</li>
+                        <li>Be aware of common scams</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>Adventure Tales</h3>
+                    <p>A personal travel blog sharing experiences from around the world.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="statistics.html">Statistics</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Me</h3>
+                    <ul class="social-icons">
+                        <li><a href="#"><img src="images/fackbook.png" alt="Facebook"></a></li>
+                        <li><a href="#"><img src="images/instagram.png" alt="Instagram"></a></li>
+                        <li><a href="#"><img src="images/twitter-circle-fill.png" alt="Twitter"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Adventure Tales. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Destination filtering
+            const filterButtons = document.querySelectorAll('.filter-button');
+            const destinationCards = document.querySelectorAll('.destination-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get the filter value
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Show/hide cards based on filter
+                    destinationCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
