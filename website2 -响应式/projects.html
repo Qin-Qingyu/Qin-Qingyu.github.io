@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | John Smith - Full Stack Developer</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">JS</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="featured-projects-section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="featured-project">
+                <div class="featured-project-content">
+                    <h3>E-Commerce Website</h3>
+                    <div class="project-tech">
+                        <span>React</span>
+                        <span>Node.js</span>
+                        <span>MongoDB</span>
+                        <span>Express</span>
+                        <span>Redux</span>
+                    </div>
+                    <div class="project-description">
+                        <p>A full-featured e-commerce platform with user authentication, product search, shopping cart, payment processing, and admin dashboard. Built with MERN stack (MongoDB, Express, React, Node.js) and Redux for state management.</p>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" target="_blank" title="GitHub Repository"><i class="fab fa-github"></i></a>
+                        <a href="#" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="featured-project-image">
+                    <img src="images/project-ecommerce.jpg" alt="E-Commerce Website">
+                </div>
+            </div>
+
+            <div class="featured-project">
+                <div class="featured-project-content">
+                    <h3>Weather Dashboard</h3>
+                    <div class="project-tech">
+                        <span>JavaScript</span>
+                        <span>React</span>
+                        <span>Axios</span>
+                        <span>Chart.js</span>
+                        <span>CSS Grid</span>
+                    </div>
+                    <div class="project-description">
+                        <p>An interactive weather application that provides real-time weather data and forecasts for locations worldwide. Features include search by city name, current conditions, 5-day forecast, and interactive charts for temperature, humidity, and wind trends.</p>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" target="_blank" title="GitHub Repository"><i class="fab fa-github"></i></a>
+                        <a href="#" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="featured-project-image">
+                    <img src="images/project-weather.jpg" alt="Weather Dashboard">
+                </div>
+            </div>
+
+            <div class="featured-project">
+                <div class="featured-project-content">
+                    <h3>Task Management App</h3>
+                    <div class="project-tech">
+                        <span>Vue.js</span>
+                        <span>Firebase</span>
+                        <span>Vuex</span>
+                        <span>Tailwind CSS</span>
+                    </div>
+                    <div class="project-description">
+                        <p>A collaborative task management application with features like task creation, assignment, due dates, progress tracking, and team collaboration. Built with Vue.js and Firebase for real-time data synchronization between team members.</p>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" target="_blank" title="GitHub Repository"><i class="fab fa-github"></i></a>
+                        <a href="#" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="featured-project-image">
+                    <img src="images/project-task.jpg" alt="Task Management App">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="other-projects-section">
+        <div class="container">
+            <h2 class="section-title">Other Noteworthy Projects</h2>
+            <div class="project-filter">
+                <button class="active" data-filter="all">All</button>
+                <button data-filter="web">Web Development</button>
+                <button data-filter="mobile">Mobile Apps</button>
+                <button data-filter="ui">UI/UX Design</button>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="images/project-blog.jpg" alt="Personal Blog">
+                    </div>
+                    <div class="project-content">
+                        <h3>Personal Blog Platform</h3>
+                        <div class="project-tech">
+                            <span>Gatsby</span>
+                            <span>GraphQL</span>
+                            <span>Markdown</span>
+                        </div>
+                        <div class="project-description">
+                            <p>A lightning-fast blog built with Gatsby and MDX for content management. Features responsive design, code syntax highlighting, and dark mode.</p>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" target="_blank" title="GitHub Repository"><i class="fab fa-github"></i></a>
+                            <a href="#" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="mobile">
+                    <div class="project-image">
+                        <img src="images/project-fitness.jpg" alt="Fitness Tracker">
+                    </div>
+                    <div class="project-content">
+                        <h3>Fitness Tracker App</h3>
+                        <div class="project-tech">
+                            <span>React Native</span>
+                            <span>Redux</span>
+                            <span>Firebase</span>
+                        </div>
+                        <div class="project-description">
+                            <p>A mobile fitness tracking application with workout planning, progress monitoring, and calorie tracking. Available for both iOS and Android.</p>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" target="_blank" title="GitHub Repository"><i class="fab fa-github"></i></a>
+                            <a href="#" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ui">
+                    <div class="project-image">
+                        <img src="images/project-dashboard.jpg" alt="Admin Dashboard">
+                    </div>
+                    <div class="project-content">
+                        <h3>Analytics Dashboard</h3>
+                        <div class="project-tech">
+                            <span>Figma</span>
+                            <span>Adobe XD</span>
+                            <span>Sketch</span>
+                        </div>
+                        <div class="project-description">
+                            <p>A comprehensive UI design for a data analytics dashboard with various data visualization components, user management, and settings panels.</p>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" target="_blank" title="Behance"><i class="fab fa-behance"></i></a>
+                            <a href="#" target="_blank" title="Dribbble"><i class="fab fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="images/project-restaurant.jpg" alt="Restaurant Website">
+                    </div>
+                    <div class="project-content">
+                        <h3>Restaurant Website</h3>
+                        <div class="project-tech">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>PHP</span>
+                        </div>
+                        <div class="project-description">
+                            <p>A responsive website for a restaurant with online menu, reservation system, and contact form. Features smooth animations and interactive elements.</p>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" target="_blank" title="GitHub Repository"><i class="fab fa-github"></i></a>
+                            <a href="#" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ui">
+                    <div class="project-image">
+                        <img src="images/project-travel.jpg" alt="Travel App">
+                    </div>
+                    <div class="project-content">
+                        <h3>Travel Booking App Design</h3>
+                        <div class="project-tech">
+                            <span>Figma</span>
+                            <span>Prototyping</span>
+                            <span>UI/UX</span>
+                        </div>
+                        <div class="project-description">
+                            <p>UI/UX design for a travel booking application with flight search, hotel booking, and itinerary planning features. Includes user research and usability testing.</p>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" target="_blank" title="Behance"><i class="fab fa-behance"></i></a>
+                            <a href="#" target="_blank" title="Dribbble"><i class="fab fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="mobile">
+                    <div class="project-image">
+                        <img src="images/project-chat.jpg" alt="Chat App">
+                    </div>
+                    <div class="project-content">
+                        <h3>Real-time Chat Application</h3>
+                        <div class="project-tech">
+                            <span>Flutter</span>
+                            <span>Firebase</span>
+                            <span>Dart</span>
+                        </div>
+                        <div class="project-description">
+                            <p>A cross-platform messaging app with real-time chat, file sharing, and push notifications. Built with Flutter for both iOS and Android devices.</p>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" target="_blank" title="GitHub Repository"><i class="fab fa-github"></i></a>
+                            <a href="#" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="show-more-btn">Show More</button>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <h2>Interested in collaborating?</h2>
+            <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+            <a href="contact.html" class="contact-btn">Get In Touch</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">JS</div>
+                    <p>Professional full-stack developer specializing in creating custom web and mobile solutions for businesses and individuals.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="skills.html">Skills</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> john.smith@example.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-map-marker-alt"></i> New York, NY</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 John Smith. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Project filtering
+            const filterButtons = document.querySelectorAll('.project-filter button');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get filter value
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Filter projects
+                    projectCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Show more button functionality
+            const showMoreBtn = document.querySelector('.show-more-btn');
+            let projectsVisible = 6; // Initial number of visible projects
+            
+            // Hide projects beyond initial count
+            updateProjectVisibility();
+            
+            showMoreBtn.addEventListener('click', function() {
+                projectsVisible += 3; // Show 3 more projects on each click
+                updateProjectVisibility();
+                
+                // Hide the button if all projects are visible
+                if (projectsVisible >= projectCards.length) {
+                    this.style.display = 'none';
+                }
+            });
+            
+            function updateProjectVisibility() {
+                projectCards.forEach((card, index) => {
+                    if (index < projectsVisible) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
