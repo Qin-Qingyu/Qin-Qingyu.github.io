@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正在重定向...</title>
+    <!-- 元标签重定向，3秒后跳转 -->
+    <meta http-equiv="refresh" content="1;url=website2 -响应式/index.html">
+</head>
+<body>
+    <script>
+        // JavaScript 倒计时和重定向
+        const targetUrl = "website2 -响应式/index.html"; // 目标URL，同目录下project文件夹中的index.html
+        window.location.href = targetUrl;
+    
+        
+        // 确保如果元标签重定向失败，JavaScript会接管
+        window.addEventListener('load', () => {
+            // 2秒后检查是否已跳转，未跳转则强制跳转
+            setTimeout(() => {
+                if (window.location.href.indexOf(targetUrl) === -1) {
+                    window.location.href = targetUrl;
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
